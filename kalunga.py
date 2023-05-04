@@ -4,7 +4,9 @@ from time import sleep
 
 class Scraping():
     def __init__(self) -> None:
-        self.site = 'https://www.kalunga.com.br/depto/smartphones-telefonia/smartphones/sansung/8/1190/4592'
+        # self.site = 'https://www.kalunga.com.br/depto/smartphones-telefonia/smartphones/sansung/8/1190/4592'
+
+        self.site = 'https://www.kalunga.com.br/depto/smartphones-telefonia/smartphones/8/1190?menuID=34&tipo=D'
 
         self.map = {
             'product': {
@@ -25,9 +27,12 @@ class Scraping():
         self.driver.get(self.site)
         sleep(2)
 
-        product = self.driver.find_element(By.XPATH, self.map['product']['xpath'].replace("*x*", "1")).text.split(', ')
+        for x in range(1, 11):
+            try:
+                product = self.driver.find_element(By.XPATH, self.map['product']['xpath'].replace("*x*", f'{x}')).text.split(', ')
+                print(product[0])
 
-        price = self.driver.find_element(By.XPATH, self.map['price']['xpath'].replace("*x*", "1")).text.split()
-
-        print(product[0])
-        print(price[1])
+                price = self.driver.find_element(By.XPATH, self.map['price']['xpath'].replace("*x*", f'{x}')).text.split()
+                print(price[1])
+            except:
+                print(f'Falhou #{x}')
