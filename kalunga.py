@@ -25,10 +25,9 @@ class Scraping():
         self.driver.get(self.site)
         sleep(2)
 
-        product = self.driver.find_element(By.XPATH, self.map['product']['xpath'].replace("*x*", "1")).text
+        product = self.driver.find_element(By.XPATH, self.map['product']['xpath'].replace("*x*", "1")).text.split(', ')
 
-        price = self.driver.find_element(By.XPATH, self.map['price']['xpath'].replace("*x*", "1")).text
+        price = self.driver.find_element(By.XPATH, self.map['price']['xpath'].replace("*x*", "1")).text.split()
 
-        print(product)
-        print(price)
-
+        print(product[0])
+        print(price[1])
