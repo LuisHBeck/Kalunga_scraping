@@ -10,7 +10,7 @@ class Scraping():
         # self.site = 'https://www.kalunga.com.br/depto/smartphones-telefonia/smartphones/8/1190?menuID=34&tipo=D'
 
         self.map = {
-            'firtsPage': {
+            'firstPage': {
                 'product': {
                 'xpath': '/html/body/main/div/div[2]/div[3]/div[2]/div[2]/div/div/div[*x*]/div/div[2]/a/h2'
             },
@@ -50,13 +50,17 @@ class Scraping():
         sleep(2)
 
         for x in range(1, 11):
-            product = self.driver.find_element(By.XPATH, self.map[page]['product']['xpath'].replace("*x*", f'{x}')).text.split(', ')
-            
-            product = product[0]
+            try:
+                product = self.driver.find_element(By.XPATH, self.map[page]['product']['xpath'].replace("*x*", f'{x}')).text.split(', ')
+                
+                product = product[0]
+                print(product)
 
-            price = self.driver.find_element(By.XPATH, self.map[page]['price']['xpath'].replace("*x*", f'{x}')).text.split()
-            
-            price = price[1]
+                price = self.driver.find_element(By.XPATH, self.map[page]['price']['xpath'].replace("*x*", f'{x}')).text.split()
+                
+                price = price[1]
+                print(price)
 
-            create(table, product, price)
-            
+                create(table, product, price)
+            except:
+                print(f'Error #{x}')

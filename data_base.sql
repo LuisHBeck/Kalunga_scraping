@@ -2,7 +2,7 @@ create database Kalunga;
 
 use Kalunga;
 
-create table firtsPage (
+create table firstPage (
     id_celular int auto_increment primary key,
     modelo varchar(250),
     price varchar(250) 
