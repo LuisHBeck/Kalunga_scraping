@@ -1,7 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
-# from create import create
+from create import create
+
+brands = set()
 
 class Scraping():
     def __init__(self) -> None:
@@ -48,6 +50,17 @@ class Scraping():
                 'price': {
                     'xpath': '/html/body/main/div[2]/div[2]/div/div[3]/div[1]/div[1]/div[*x*]/div/div[2]/div[2]/span'
                 }
+            },
+
+            'multi': {
+                'product': {
+                    'xpath': '/html/body/main/div/div[2]/div[3]/div/div[2]/div/div/div[1]/div[*x*]/div/div[2]/a/h2'
+                },
+
+                'price': {
+                    'xpath': '/html/body/main/div/div[2]/div[3]/div/div[2]/div/div/div[1]/div[*x*]/div/div[2]/div[2]/span' 
+                }
+
             }
         }
 
@@ -65,13 +78,18 @@ class Scraping():
                 product = self.driver.find_element(By.XPATH, self.map[page]['product']['xpath'].replace("*x*", f'{x}')).text.split(', ')
                 
                 product = product[0]
-                print(product)
+                # print(product)
 
                 price = self.driver.find_element(By.XPATH, self.map[page]['price']['xpath'].replace("*x*", f'{x}')).text.split()
                 
                 price = price[1]
-                print(price)
+                # print(price)
 
-                # create(table, product, price)
+                if product[0] in 'Smartphone':
+                    create(table, product, price)
+
+                brand = product.split()
+                brands.add(brand[1])
             except:
                 print(f'Error #{x}')
+        print(brands)
