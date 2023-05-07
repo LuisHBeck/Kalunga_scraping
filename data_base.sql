@@ -25,3 +25,9 @@ create table nokia (
     modelo varchar(250),
     price varchar(250)
 );
+
+create table multi (
+    id_celular int auto_increment primary key,
+    modelo varchar(250),
+    price varchar(250)
+);
