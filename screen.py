@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
-from read import read_brand
+import matplotlib.pyplot as plt
+from read import read_brand, read_price, read_only_brand
 from kalunga import Scraping
 
 screen = Tk()
@@ -42,7 +43,7 @@ class Aplication():
         self.bt_scraping.place(relx=0.05, rely=0.25, relwidth=0.15, relheight=0.58)
         
         self.bt_plot = Button(self.frame0, text='Plot', bg='#1f4788',
-                                foreground='white', command=...)
+                                foreground='white', command=self.plot)
         self.bt_plot.place(relx=0.8, rely=0.25, relwidth=0.15, relheight=0.58)
         
         self.bt_brand = Button(self.frame0, text='Select', bg='#1f4788',
@@ -99,5 +100,35 @@ class Aplication():
 
         web.open('motorola','https://www.kalunga.com.br/busca/1?q=smartphone-motorola', 'motorola')
 
+        web.open('multi', 'https://www.kalunga.com.br/busca/1?q=smartphone-multig', 'multi')
+
     def plot(self):
-        ...
+        table = self.get_brand()
+        prices = read_price(table)
+        brands = read_only_brand(table)
+
+        fig, ax = plt.subplots()
+        numbers = [str(num) for num in range(len(prices))]
+
+        prices_new = []
+        for price in prices:
+            prices_new.append(*price)
+        counts = [float((num).replace('.', '').replace(',', '.')) for num in prices_new]
+
+        brand_new = []
+        for brand in brands:
+            brand_new.append(*brand)
+        
+        brand_foot = [brand.replace('Smartphone', '') for brand in brand_new]
+        
+        bar_colors = 'tab:blue'
+        """ count is related to left column (prices) """
+        ax.bar(brand_foot, counts, color=bar_colors)
+
+        ax.set_title(f'Graphic representation')
+        ax.set_ylabel('Amount of occurrences')
+
+        plt.show()
+
+    
+
