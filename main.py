@@ -14,5 +14,4 @@ if __name__ == '__main__':
 
     # teste.open('multi', 'https://www.kalunga.com.br/busca/1?q=smartphone-multig', 'multi')
 
-
     j = Aplication()
