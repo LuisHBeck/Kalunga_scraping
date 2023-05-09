@@ -3,6 +3,7 @@ from tkinter import ttk
 import matplotlib.pyplot as plt
 from read import read_brand, read_price, read_only_brand
 from kalunga import Scraping, brands, brands_list
+from create import delete_all
 
 screen = Tk()
 
@@ -16,6 +17,7 @@ class Aplication():
         self.buttons()
         self.labels()
         self.labels_db()
+        self.clear_all()
         screen.mainloop()
 
     def screen(self):
@@ -138,5 +140,7 @@ class Aplication():
 
         self.labels()
 
+    def clear_all(self):
+        delete_all()
     
 

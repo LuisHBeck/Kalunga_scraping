@@ -17,3 +17,11 @@ def create_table(table):
 
     cursor.execute(sql)
     data_base.commit()
+
+def delete_all():
+    sql = f'''DROP TABLE IF EXISTS firstpage, nokia, galaxy, moto, multi'''
+    cursor.execute(sql)
+    data_base.commit()
+
+
+
