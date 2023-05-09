@@ -1,9 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
-from create import create
+from create import create, create_table
 
 brands = set()
+brands_list = []
 
 class Scraping():
     def __init__(self) -> None:
@@ -72,6 +73,10 @@ class Scraping():
         sleep(2)
         self.driver.get(site)
         sleep(2)
+
+        create_table(table)
+        
+        brands_list.append(table)
 
         for x in range(1, 11):
             try:

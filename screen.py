@@ -2,11 +2,11 @@ from tkinter import *
 from tkinter import ttk
 import matplotlib.pyplot as plt
 from read import read_brand, read_price, read_only_brand
-from kalunga import Scraping
+from kalunga import Scraping, brands, brands_list
 
 screen = Tk()
 
-brand = ['FirstPage', 'Sansung', 'Nokia', 'Motorola', 'Multi']
+brand = []
 
 class Aplication():
     def __init__(self) -> None:
@@ -52,7 +52,7 @@ class Aplication():
 
     def labels(self):
         self.combobox = ttk.Combobox(self.frame0, values=brand)
-        self.combobox.set(brand[0])
+        self.combobox.set('Select')
         self.combobox.place(relx=0.5, rely=0.25, relwidth=0.15, relheight=0.58)
 
     def labels_db(self):
@@ -96,11 +96,13 @@ class Aplication():
 
         web.open('nokia','https://www.kalunga.com.br/busca/1?q=smartphone-nokia', 'nokia')
 
-        web.open('sansung','https://www.kalunga.com.br/busca/1?q=smartphone-sansung', 'sansung')
+        web.open('galaxy','https://www.kalunga.com.br/busca/1?q=smartphone-sansung', 'sansung')
 
-        web.open('motorola','https://www.kalunga.com.br/busca/1?q=smartphone-motorola', 'motorola')
+        web.open('moto','https://www.kalunga.com.br/busca/1?q=smartphone-motorola', 'motorola')
 
         web.open('multi', 'https://www.kalunga.com.br/busca/1?q=smartphone-multig', 'multi')
+
+        self.brand_list()
 
     def plot(self):
         table = self.get_brand()
@@ -129,6 +131,12 @@ class Aplication():
         ax.set_ylabel('Amount of occurrences')
 
         plt.show()
+
+    def brand_list(self):
+        for i in brands_list:
+            brand.append(i)
+
+        self.labels()
 
     
 

@@ -7,3 +7,13 @@ def create(table, modelo, price):
 
     cursor.execute(sql)
     data_base.commit()
+
+def create_table(table):
+    sql = f'''create table {table} (
+    id_celular int auto_increment primary key,
+    modelo varchar(250),
+    price varchar(250)
+    );'''
+
+    cursor.execute(sql)
+    data_base.commit()

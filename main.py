@@ -8,9 +8,9 @@ if __name__ == '__main__':
 
     # teste.open('nokia','https://www.kalunga.com.br/busca/1?q=smartphone-nokia', 'nokia')
 
-    # teste.open('sansung','https://www.kalunga.com.br/busca/1?q=smartphone-sansung', 'sansung')
+    # teste.open('galaxy','https://www.kalunga.com.br/busca/1?q=smartphone-sansung', 'sansung')
 
-    # teste.open('motorola','https://www.kalunga.com.br/busca/1?q=smartphone-motorola', 'motorola')
+    # teste.open('moto','https://www.kalunga.com.br/busca/1?q=smartphone-motorola', 'motorola')
 
     # teste.open('multi', 'https://www.kalunga.com.br/busca/1?q=smartphone-multig', 'multi')
 
