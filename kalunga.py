@@ -92,7 +92,7 @@ class Scraping():
 
                 price = self.driver.find_element(By.XPATH, self.map[page]['price']['xpath'].replace("*x*", f'{x}')).text.split()
                 
-                price = price[1]
+                price = price[1].replace('.', '').replace(',', '.')
                 # print(price)
 
                 if product[0] in 'Smartphone':
@@ -107,8 +107,9 @@ class Scraping():
                     }
 
                     dataframe = pd.DataFrame(smartphones)
-                    dataframe.to_excel('./xlsx_archives/Products.xlsx', sheet_name=table)
-                    dataframe.to_csv('./xlsx_archives/Products.csv', index=False)
+                    dataframe.to_excel('./xlsx_archives/Products.xlsx', sheet_name=table, )
+                    dataframe.to_csv('./xlsx_archives/Products.csv', sep=";")
+                    
             except:
                 print(f'Error #{x}')
         
