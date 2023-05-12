@@ -2,9 +2,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
 from create import create, create_table
+import pandas as pd
 
 brands = set()
 brands_list = []
+
+index = []
+model = []
+price_v = []
 
 class Scraping():
     def __init__(self) -> None:
@@ -93,8 +98,19 @@ class Scraping():
                 if product[0] in 'Smartphone':
                     create(table, product, price)
 
-                brand = product.split()
-                brands.add(brand[1])
+                if page == 'firstPage':
+                    model.append(product)
+                    price_v.append(price)
+                    smartphones = {
+                    'model': model,
+                    'price': price_v
+                    }
+
+                    dataframe = pd.DataFrame(smartphones)
+                    dataframe.to_excel('./xlsx_archives/Products.xlsx', sheet_name=table)
+                    dataframe.to_csv('./xlsx_archives/Products.csv', index=False)
             except:
                 print(f'Error #{x}')
-        print(brands)
+        
+
+        

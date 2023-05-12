@@ -2,7 +2,7 @@ from kalunga import Scraping
 from screen import Aplication
 
 if __name__ == '__main__':
-    teste = Scraping()
+    # teste = Scraping()
 
     # teste.open('firstpage','https://www.kalunga.com.br/depto/smartphones-telefonia/smartphones/8/1190?menuID=34&tipo=D', 'firstPage')
 
