@@ -18,6 +18,7 @@ class Aplication():
         self.labels()
         self.labels_db()
         self.clear_all()
+        self.image()
         screen.mainloop()
 
     def screen(self):
@@ -31,7 +32,7 @@ class Aplication():
                             highlightthickness=0.5, highlightbackground='white')
         self.frame0.place(relx=0.03, rely=0.02, relwidth=0.94, relheight=0.12)
 
-        self.frame1 = Frame(self.window, bg='#686868',
+        self.frame1 = Frame(self.window, bg='#000',
                             highlightthickness=0.5, highlightbackground='white')
         self.frame1.place(relx=0.03, rely=0.17, relwidth=0.94, relheight=0.12)
 
@@ -76,6 +77,12 @@ class Aplication():
         self.scroll_list = Scrollbar(self.frame2, orient='vertical')
         self.models_list.configure(yscrollcommand=self.scroll_list.set)
         self.scroll_list.place(relx=0.96 , rely=0.01, relwidth=0.04, relheight=0.98)
+
+    def image(self):
+        self.img_ninja = PhotoImage(file="kalunga-branco.png")
+        self.lb_img = Label(self.frame1, image=self.img_ninja)
+        self.lb_img.place(relx=0.01, rely=0.02, relwidth=0.98, relheight=0.98)
+
 
     def get_brand(self):
         self.brand_selected = self.combobox.get().lower()
